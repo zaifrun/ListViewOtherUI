@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //super(parent,view,position,id);
                 Log.d("listview","itemclicked");
                 String country = countries[position];
                 Toast.makeText(getApplicationContext(),"you clicked : "+
