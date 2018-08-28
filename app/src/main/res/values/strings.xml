@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ListViewOtherUI</string>
+    <string name="my_button">My Button</string>
 </resources>
