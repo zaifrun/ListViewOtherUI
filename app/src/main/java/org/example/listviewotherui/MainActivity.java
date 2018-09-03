@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    private String[] countries = { "Albania", "Algeria", "Armenia", "Andora",
+    private String[] countries = { "Albania", "Algeria", "Armenia", "Andorra",
             "Angola", "Argentina", "Australia", "Bahrain", "Bangladesh",
             "Barbados", "Brazil", "China", "Denmark", "Egypt", "France",
             "Ghana", "Hong Kong", "India", "Italy", "United Kingdom",
