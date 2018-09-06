@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ListViewOtherUI</string>
-    <string name="my_button">My Button</string>
+    <string name="my_button">Show selection</string>
+    <string name="addCountry">Add Country</string>
+    <string name="delete">Delete</string>
+    <string name="new_country">New Country</string>
 </resources>

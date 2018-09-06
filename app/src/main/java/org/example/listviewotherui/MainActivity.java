@@ -6,8 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,23 +27,56 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_checked, countries);
+        //convert into an arraylist
+        ArrayList<String> list =new ArrayList<>(Arrays.asList(countries));
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_checked, list);
 
         final ListView listView = findViewById(R.id.mylist);
+
+        //only allow one element to be selected at the same time
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        //Button clicked
+        //Selection Button clicked
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int selected = listView.getCheckedItemPosition();
                 Log.d("selection","selected: "+selected);
+
+                //check if something is clicked
                 if (selected!=ListView.INVALID_POSITION)
-                Toast.makeText(getApplicationContext(),
+                    Toast.makeText(getApplicationContext(),
                         "My selection: "+countries[selected],Toast.LENGTH_SHORT).show();
             }
         });
+
+        //add button clicked
+       findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+                EditText editText = findViewById(R.id.editCountry);
+                String newCountry = editText.getText().toString();
+                if (newCountry.length()>0)
+                    adapter.add(newCountry);
+           }
+       });
+
+       findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               int selected = listView.getCheckedItemPosition();
+
+               //check if something is clicked
+               if (selected!=ListView.INVALID_POSITION)
+               {
+                   String removeString = adapter.getItem(selected);
+
+                   adapter.remove(removeString);
+               }
+           }
+       });
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
