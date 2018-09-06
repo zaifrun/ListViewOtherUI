@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
            public void onClick(View v) {
                int selected = listView.getCheckedItemPosition();
 
-               //check if something is clicked
+               //check if something is selected
                if (selected!=ListView.INVALID_POSITION)
                {
                    String removeString = adapter.getItem(selected);
