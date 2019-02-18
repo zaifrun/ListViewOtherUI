@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
 
+
     private String[] countries = { "Albania", "Algeria", "Armenia", "Andorra",
             "Angola", "Argentina", "Australia", "Bahrain", "Bangladesh",
             "Barbados", "Brazil", "China", "Denmark", "Egypt", "France",
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //convert into an arraylist
-        ArrayList<String> list =new ArrayList<>(Arrays.asList(countries));
+        final ArrayList<String> list =new ArrayList<>(Arrays.asList(countries));
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_checked, list);
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 //check if something is clicked
                 if (selected!=ListView.INVALID_POSITION)
                     Toast.makeText(getApplicationContext(),
-                        "My selection: "+countries[selected],Toast.LENGTH_SHORT).show();
+                        "My selection: "+list.get(selected),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -59,7 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 EditText editText = findViewById(R.id.editCountry);
                 String newCountry = editText.getText().toString();
                 if (newCountry.length()>0)
+                {
                     adapter.add(newCountry);
+                    Log.d("AddCountry","Adding : "+newCountry);
+                    //you can also do the code below - same effect.
+                    //list.add(newCountry);
+                   // adapter.notifyDataSetChanged();
+                }
            }
        });
 
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("listview","itemclicked");
-                String country = countries[position];
+                String country = list.get(position);
                 Toast.makeText(getApplicationContext(),"you clicked : "+
                         country,Toast.LENGTH_SHORT).show();
             }
